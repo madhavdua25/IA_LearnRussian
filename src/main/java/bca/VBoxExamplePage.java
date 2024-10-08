@@ -14,7 +14,7 @@ public class VBoxExamplePage {
 
         VBox pane = new VBox();
 
-        Label explanation = new Label("HBox and VBox code is identical except for the VBox/HBox object creation!");
+        Label explanation = new Label("Unscored question: How do you say <<apple>> in Russian?");
         ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("IB Computer Science");
         Button btMainMenu = new Button("Main Menu");
