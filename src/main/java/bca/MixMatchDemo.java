@@ -45,7 +45,7 @@ public class MixMatchDemo {
         hbDealerCards.getChildren().add(new ImageView("file:image/45.png"));
         vbDealer.getChildren().addAll(lblDealer, hbDealerCards);
 
-        Label lblPlayer = new Label("Player");
+        Label lblPlayer = new Label("Recent quiz score: x/10");
         lblPlayer.setFont(SUB_HEADING_FONT);    
         HBox hbPlayerCards = new HBox();
 

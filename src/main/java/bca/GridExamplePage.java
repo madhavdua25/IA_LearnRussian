@@ -14,16 +14,21 @@ public class GridExamplePage {
 
         GridPane pane = new GridPane();
 
-        Label explanation = new Label("GridPane adds children differently -- check that code.");
-        ImageView cardImage = new ImageView("file:image/1.png");
-        TextField txtField = new TextField("IB Computer Science");
+        Label explanation = new Label("Recent quiz score: x/10");
+        Label next_thing = new Label("Recent quiz date: MM/DD/YY");
+        //Label after_that = new Label("View progress chart");
+        //ImageView cardImage = new ImageView("file:image/1.png");
+        //TextField txtField = new TextField("IB Computer Science");
         Button btMainMenu = new Button("Main Menu");
+        Button btProgressReport = new Button("View Progress Report");
 
         // For a grid pane, you need to give the x,y position of the widget.
         pane.add(explanation, 0,0);
-        pane.add(cardImage, 1,0);
-        pane.add(txtField, 1,1);
-        pane.add(btMainMenu, 0,1);
+        pane.add(next_thing, 0, 1);
+        pane.add(btProgressReport, 0, 2);
+        //pane.add(cardImage, 1,0);
+        //pane.add(txtField, 1,1);
+        pane.add(btMainMenu, 0,3);
 
         // Set what happens when the button is pressed.
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
