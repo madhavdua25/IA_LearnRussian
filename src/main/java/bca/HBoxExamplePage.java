@@ -14,12 +14,13 @@ public class HBoxExamplePage {
         HBox pane = new HBox();
 
         Label explanation = new Label("Question 1: How do you say <<cat>> in Russian?");
-        ImageView cardImage = new ImageView("file:image/1.png");
-        TextField txtField = new TextField("IB Computer Science");
+        //ImageView cardImage = new ImageView("file:image/1.png");
+        TextField txtField = new TextField("Input answer");
         Button btMainMenu = new Button("Main Menu");
 
         // Add multiple widgets at once to the hbox.
-        pane.getChildren().addAll(explanation, cardImage, txtField);
+        //pane.getChildren().addAll(explanation, cardImage, txtField);
+        pane.getChildren().addAll(explanation, txtField);
 
         // Or just add a single widget to the hbox
         pane.getChildren().add(btMainMenu);
