@@ -27,12 +27,14 @@ public class MainFrame extends Application {
         Button btHBox = new Button("Scored Quiz");
         Button btVBox = new Button("Unscored Practice");
         Button btGrid = new Button("Score Report");
+        Button btUser = new Button("Sign in to track progress!");
        //Button btBorderPane = new Button("BorderPane Example");
        //Button btMixAndMatch = new Button("Mix and Match Demo");
 
         btHBox.setOnAction(e-> HBoxExamplePage.showHBoxExample(stage));
         btVBox.setOnAction(e-> VBoxExamplePage.showVBoxExample(stage));
         btGrid.setOnAction(e-> GridExamplePage.showGridExample(stage));
+        btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
         //btBorderPane.setOnAction(e-> BorderPaneExamplePage.showBorderPaneExample(stage));
         //btMixAndMatch.setOnAction(e-> MixMatchDemo.showMixMatchDemo(stage));
 
@@ -41,6 +43,7 @@ public class MainFrame extends Application {
         gp.add(btHBox, 0, 1);
         gp.add(btVBox, 1, 1);
         gp.add(btGrid, 2, 1);
+        gp.add(btUser, 1, 2);
         //gp.add(btBorderPane, 3, 1);
         //gp.add(btMixAndMatch, 4, 1);
         gp.setHgap(10);
