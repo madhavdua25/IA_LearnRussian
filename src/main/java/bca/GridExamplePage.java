@@ -32,6 +32,7 @@ public class GridExamplePage {
 
         // Set what happens when the button is pressed.
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
+        btProgressReport.setOnAction(e -> ProgressReportPage.showProgressReport(stage));
 
         // Add the hb as the root of the scene
         Scene scene = new Scene(pane);

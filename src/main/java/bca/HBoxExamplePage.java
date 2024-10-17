@@ -1,7 +1,10 @@
 package bca;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -17,6 +20,7 @@ public class HBoxExamplePage {
         //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         Button btMainMenu = new Button("Main Menu");
+        
 
         // Add multiple widgets at once to the hbox.
         //pane.getChildren().addAll(explanation, cardImage, txtField);
@@ -34,6 +38,8 @@ public class HBoxExamplePage {
         // display the scene on the screen
         stage.setScene(scene);
         stage.show();
+
+
     }
 
 }

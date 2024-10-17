@@ -3,8 +3,10 @@ package bca;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -27,14 +29,20 @@ public class MainFrame extends Application {
         Button btHBox = new Button("Scored Quiz");
         Button btVBox = new Button("Unscored Practice");
         Button btGrid = new Button("Score Report");
-        Button btUser = new Button("Sign in to track progress!");
+        //Button btUser = new Button("Sign in to track progress!");
+        
+
+        ComboBox namesComboBox = new ComboBox();
+        namesComboBox.getItems().addAll("Adam", "Brianna", "Carl");
+        Label users = new Label("User: ");
+
        //Button btBorderPane = new Button("BorderPane Example");
        //Button btMixAndMatch = new Button("Mix and Match Demo");
 
         btHBox.setOnAction(e-> HBoxExamplePage.showHBoxExample(stage));
         btVBox.setOnAction(e-> VBoxExamplePage.showVBoxExample(stage));
         btGrid.setOnAction(e-> GridExamplePage.showGridExample(stage));
-        btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
+        //btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
         //btBorderPane.setOnAction(e-> BorderPaneExamplePage.showBorderPaneExample(stage));
         //btMixAndMatch.setOnAction(e-> MixMatchDemo.showMixMatchDemo(stage));
 
@@ -43,7 +51,9 @@ public class MainFrame extends Application {
         gp.add(btHBox, 0, 1);
         gp.add(btVBox, 1, 1);
         gp.add(btGrid, 2, 1);
-        gp.add(btUser, 1, 2);
+        gp.add(namesComboBox, 1, 2);
+        gp.add(users, 0, 2);
+        //gp.add(btUser, 1, 2);
         //gp.add(btBorderPane, 3, 1);
         //gp.add(btMixAndMatch, 4, 1);
         gp.setHgap(10);
