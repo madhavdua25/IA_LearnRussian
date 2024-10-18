@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -28,6 +29,7 @@ public class MainFrame extends Application {
         Button btHBox = new Button("Scored Quiz");
         Button btVBox = new Button("Unscored Practice");
         Button btGrid = new Button("Score Report");
+        ImageView russiaFlag = new ImageView("file:image/russiaflag.png");
         //Button btUser = new Button("Sign in to track progress!");
         
 
@@ -52,6 +54,7 @@ public class MainFrame extends Application {
         gp.add(btGrid, 2, 1);
         gp.add(namesComboBox, 1, 2);
         gp.add(users, 0, 2);
+        gp.add(russiaFlag, 1, 3);
         //gp.add(btUser, 1, 2);
         //gp.add(btBorderPane, 3, 1);
         //gp.add(btMixAndMatch, 4, 1);
@@ -69,7 +72,7 @@ public class MainFrame extends Application {
         Scene scene = new Scene(vb);
 
         stage.setScene(scene);
-        stage.setTitle("JavaFX Examples");
+        //stage.setTitle("JavaFX Examples");
         stage.setWidth(1100);
         stage.setHeight(600);
         stage.show();

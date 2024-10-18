@@ -31,7 +31,7 @@ public class VBoxExamplePage {
         pane.getChildren().addAll(explanation, answersComboBox);
 
         // Or just add a single widget to the hbox
-        pane.getChildren().addAll(btMainMenu, btSubmit);
+        pane.getChildren().addAll(btSubmit, btMainMenu);
 
         // Set what happens when the button is pressed.
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
