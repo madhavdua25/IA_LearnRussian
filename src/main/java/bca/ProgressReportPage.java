@@ -3,6 +3,7 @@ package bca;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -11,7 +12,8 @@ public class ProgressReportPage {
         HBox pane = new HBox();
 
         Label explanation = new Label("Below is a graph of your scores");
-        Button btMainMenu = new Button("Main Menu");
+        Button btBack = new Button("Back to scores");
+        ImageView graph = new ImageView("file:image/graph.jpeg");
         //ImageView cardImage = new ImageView("file:image/1.png");
         //TextField txtField = new TextField("Input username:");
         // Button btUserA = new Button("User A");
@@ -20,9 +22,9 @@ public class ProgressReportPage {
 
         // Add multiple widgets at once to the hbox.
         //pane.getChildren().addAll(explanation, cardImage, txtField);
-        pane.getChildren().addAll(explanation, btMainMenu);
+        pane.getChildren().addAll(explanation, btBack, graph);
 
-        btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
+        btBack.setOnAction(e -> GridExamplePage.showGridExample(stage));
         // Or just add a single widget to the hbox
         //pane.getChildren().addAll(btUserA, btUserB, btUserC);
 

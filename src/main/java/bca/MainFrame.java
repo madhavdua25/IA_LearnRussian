@@ -3,7 +3,6 @@ package bca;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -33,7 +32,7 @@ public class MainFrame extends Application {
         
 
         ComboBox namesComboBox = new ComboBox();
-        namesComboBox.getItems().addAll("Adam", "Brianna", "Carl");
+        namesComboBox.getItems().addAll("Adam", "Brianna", "Carl", "Daphne", "Eric");
         Label users = new Label("User: ");
 
        //Button btBorderPane = new Button("BorderPane Example");
@@ -59,7 +58,7 @@ public class MainFrame extends Application {
         gp.setHgap(10);
         gp.setVgap(10);
 
-        Label pageTitle = new Label("Learn Russian!");
+        Label pageTitle = new Label("Learn Russian! / Учите русский язык!");
         pageTitle.setFont(MainFrame.PAGE_HEADING_FONT);
         pageTitle.setPadding(new Insets(0,0,30,0));
         
