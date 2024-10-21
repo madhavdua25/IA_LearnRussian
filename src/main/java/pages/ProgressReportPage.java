@@ -1,4 +1,4 @@
-package bca;
+package pages;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

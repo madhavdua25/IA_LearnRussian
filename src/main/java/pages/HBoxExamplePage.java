@@ -1,4 +1,4 @@
-package bca;
+package pages;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,4 +1,4 @@
-package bca;
+package pages;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
