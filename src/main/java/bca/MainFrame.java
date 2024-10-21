@@ -13,6 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+// import javafx.beans.value.ChangeListener;
+// import javafx.beans.value.ObservableValue;
+// import javafx.event.ActionEvent;
+// import javafx.event.EventHandler;
+
 public class MainFrame extends Application {
     public static final Font PAGE_HEADING_FONT = new Font("Arial Bold", 28);
     public static final Font TABLE_HEADING_FONT = new Font("Arial Bold", 24);
@@ -35,6 +40,7 @@ public class MainFrame extends Application {
 
         ComboBox namesComboBox = new ComboBox();
         namesComboBox.getItems().addAll("Adam", "Brianna", "Carl", "Daphne", "Eric");
+        namesComboBox.setEditable(true);
         Label users = new Label("User: ");
 
        //Button btBorderPane = new Button("BorderPane Example");
