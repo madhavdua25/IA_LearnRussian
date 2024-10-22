@@ -45,6 +45,7 @@ public class MainFrame extends Application {
         ComboBox<Student> namesComboBox = new ComboBox<>();
         namesComboBox.getItems().addAll(students);
         namesComboBox.setEditable(true);
+        
         Label users = new Label("User: ");
 
        //Button btBorderPane = new Button("BorderPane Example");

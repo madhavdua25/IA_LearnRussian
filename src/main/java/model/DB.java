@@ -92,18 +92,18 @@ public class DB {
 	// }
 
 	/** Adds a new league to the database. */
-	// public static void insertLeague(String leagueName) {
-	// 	String query = "insert into league(league_name) values (?)";
+	public static void insertStudent(String name) {
+		String query = "insert into student(name) values (?)";
 
-	// 	try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
+		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 
-	// 		insertStmt.setString(1, leagueName);
-	// 		insertStmt.executeUpdate();
-	// 	} catch (Exception ex) {
-	// 		System.err.println(ex);
-	// 		ex.printStackTrace(System.err);
-	// 	}
-	// }
+			insertStmt.setString(1, name);
+			insertStmt.executeUpdate();
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+	}
 
 	/** Updates the name of a league in the database. */
 	// public static void updateLeague(League league) {
