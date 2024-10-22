@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,6 +14,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.DB;
+import model.Student;
 
 // import javafx.beans.value.ChangeListener;
 // import javafx.beans.value.ObservableValue;
@@ -37,9 +41,9 @@ public class MainFrame extends Application {
         ImageView russiaFlag = new ImageView("file:image/russiaflag.png");
         //Button btUser = new Button("Sign in to track progress!");
         
-
-        ComboBox namesComboBox = new ComboBox();
-        namesComboBox.getItems().addAll("Adam", "Brianna", "Carl", "Daphne", "Eric");
+        ArrayList<Student> students = DB.loadStudents();
+        ComboBox<Student> namesComboBox = new ComboBox<>();
+        namesComboBox.getItems().addAll(students);
         namesComboBox.setEditable(true);
         Label users = new Label("User: ");
 
