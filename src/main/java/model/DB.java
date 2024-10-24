@@ -122,17 +122,17 @@ public class DB {
 	// }
 
 	/** Deletes the given league from the database. */
-	// public static void deleteLeague(int leagueId) {
-	// 	String query = "delete from league where league_id = ?";
+	public static void deleteStudent(int leagueId) {
+		String query = "delete from student where student_id = ?";
 
-	// 	try (PreparedStatement updateStmt = db.conn.prepareStatement(query)) {
+		try (PreparedStatement updateStmt = db.conn.prepareStatement(query)) {
 
-	// 		updateStmt.setInt(1, leagueId);
-	// 		updateStmt.executeUpdate();
-	// 	} catch (Exception ex) {
-	// 		System.err.println(ex);
-	// 		ex.printStackTrace(System.err);
-	// 	}
-	// }
+			updateStmt.setInt(1, leagueId);
+			updateStmt.executeUpdate();
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+	}
 
 }

@@ -16,11 +16,11 @@ public class HBoxExamplePage {
     public static void showHBoxExample(Stage stage) {
         HBox pane = new HBox();
 
-        Label explanation = new Label("Question 1: How do you say <<cat>> in Russian?");
+        Label explanation = new Label("Question: " + "How do you say <<cat>> in Russian?");
         //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
-        answersComboBox.getItems().addAll("Da", "Nyet", "Mojet Beet");
+        answersComboBox.getItems().addAll("да", "нет", "может быть");
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit answer");
         

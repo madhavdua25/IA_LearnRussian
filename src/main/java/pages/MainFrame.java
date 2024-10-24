@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -44,9 +45,11 @@ public class MainFrame extends Application {
         ArrayList<Student> students = DB.loadStudents();
         ComboBox<Student> namesComboBox = new ComboBox<>();
         namesComboBox.getItems().addAll(students);
-        namesComboBox.setEditable(true);
-        
-        Label users = new Label("User: ");
+
+        Label users = new Label("New user: ");
+        TextField newUser = new TextField ();
+        DB.insertStudent(newUser.getText());
+
 
        //Button btBorderPane = new Button("BorderPane Example");
        //Button btMixAndMatch = new Button("Mix and Match Demo");
@@ -63,8 +66,9 @@ public class MainFrame extends Application {
         gp.add(btHBox, 0, 1);
         gp.add(btVBox, 1, 1);
         gp.add(btGrid, 2, 1);
-        gp.add(namesComboBox, 1, 2);
-        gp.add(users, 0, 2);
+        gp.add(namesComboBox, 0, 2);
+        gp.add(users, 1, 2);
+        gp.add(newUser, 3, 2);
         gp.add(russiaFlag, 1, 3);
         //gp.add(btUser, 1, 2);
         //gp.add(btBorderPane, 3, 1);
