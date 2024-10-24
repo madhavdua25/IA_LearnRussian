@@ -48,7 +48,8 @@ public class MainFrame extends Application {
 
         Label users = new Label("New user: ");
         TextField newUser = new TextField ();
-        DB.insertStudent(newUser.getText());
+        String input = newUser.getText();
+        DB.insertStudent(input);
 
 
        //Button btBorderPane = new Button("BorderPane Example");
