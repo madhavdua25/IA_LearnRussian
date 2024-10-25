@@ -92,12 +92,14 @@ public class DB {
 	// }
 
 	/** Adds a new league to the database. */
-	public static void insertStudent(String name) {
-		String query = "insert into student(name) values (?)";
+	public static void insertStudent(String name, int val) {
+		String query = "insert into student(student_id, name ) values (?,?)";
 
 		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 
-			insertStmt.setString(1, name);
+			insertStmt.setInt(1, val);
+			insertStmt.setString(2, name);
+			
 			insertStmt.executeUpdate();
 		} catch (Exception ex) {
 			System.err.println(ex);

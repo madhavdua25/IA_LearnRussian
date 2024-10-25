@@ -46,10 +46,8 @@ public class MainFrame extends Application {
         ComboBox<Student> namesComboBox = new ComboBox<>();
         namesComboBox.getItems().addAll(students);
 
-        Label users = new Label("New user: ");
         TextField newUser = new TextField ();
-        String input = newUser.getText();
-        DB.insertStudent(input);
+        Button btUser = new Button("Submit");
 
 
        //Button btBorderPane = new Button("BorderPane Example");
@@ -58,6 +56,7 @@ public class MainFrame extends Application {
         btHBox.setOnAction(e-> HBoxExamplePage.showHBoxExample(stage));
         btVBox.setOnAction(e-> VBoxExamplePage.showVBoxExample(stage));
         btGrid.setOnAction(e-> GridExamplePage.showGridExample(stage));
+        btUser.setOnAction(e-> DB.insertStudent(newUser.getText(), students.size()+1));
         //btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
         //btBorderPane.setOnAction(e-> BorderPaneExamplePage.showBorderPaneExample(stage));
         //btMixAndMatch.setOnAction(e-> MixMatchDemo.showMixMatchDemo(stage));
@@ -68,8 +67,8 @@ public class MainFrame extends Application {
         gp.add(btVBox, 1, 1);
         gp.add(btGrid, 2, 1);
         gp.add(namesComboBox, 0, 2);
-        gp.add(users, 1, 2);
-        gp.add(newUser, 3, 2);
+        gp.add(btUser, 2, 2);
+        gp.add(newUser, 1, 2);
         gp.add(russiaFlag, 1, 3);
         //gp.add(btUser, 1, 2);
         //gp.add(btBorderPane, 3, 1);
