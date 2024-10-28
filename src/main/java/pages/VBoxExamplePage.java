@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.DB;
+import model.Question;
 
 public class VBoxExamplePage {
 

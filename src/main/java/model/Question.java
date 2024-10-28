@@ -3,17 +3,21 @@ package model;
 public class Question {
     private int question_id;
     private String text;
+    private String correct_answer;
     private String incorrect1;
     private String incorrect2;
     private String incorrect3;
 
-    public Question(int question_id, String text, String incorrect1, String incorrect2, String incorrect3) {
+    public Question(int question_id, String text, String correct_answer, String incorrect1, String incorrect2, String incorrect3) {
         this.question_id = question_id;
         this.text = text;
+        this.correct_answer = correct_answer;
         this.incorrect1 = incorrect1;
         this.incorrect2 = incorrect2;
         this.incorrect3 = incorrect3;
     }
+
+    
 
     public int getQuestion_id() {
         return question_id;
@@ -53,6 +57,18 @@ public class Question {
 
     public void setIncorrect3(String incorrect3) {
         this.incorrect3 = incorrect3;
+    }
+
+
+
+    public String getCorrect_answer() {
+        return correct_answer;
+    }
+
+
+
+    public void setCorrect_answer(String correct_answer) {
+        this.correct_answer = correct_answer;
     }
 
     

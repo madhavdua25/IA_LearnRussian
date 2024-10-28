@@ -65,6 +65,37 @@ public class DB {
 		return list;
 	}
 
+	public static ArrayList<Question> loadQuestions() {
+		ArrayList<Question> list = new ArrayList<>();
+		String queryString = " select question.question_id, text, correct_answer, incorrect1, incorrect2, incorrect3 " +
+				" from question  " +
+				" order by question_id ";
+
+		try (
+				PreparedStatement queryStmt = db.conn.prepareStatement(queryString);
+				ResultSet rs = queryStmt.executeQuery();) {
+
+			while (rs.next()) {
+				int question_id = rs.getInt("question_id");
+				String text = rs.getString("text");
+				String correct_answer = rs.getString("correct_answer");
+				String incorrect1 = rs.getString("incorrect1");
+				String incorrect2 = rs.getString("incorrect2");
+				String incorrect3 = rs.getString("incorrect3");
+
+				Question question = new Question(question_id, text, correct_answer, incorrect1, incorrect2, incorrect3);
+
+				list.add(question);
+			}
+
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+
+		return list;
+	}
+
 	/** Loads a single league given an id. */
 	// public static League loadLeague(int leagueId) {
 	// 	String queryString = " select league.league_id, league_name " +

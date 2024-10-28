@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -10,17 +12,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import model.DB;
+import model.Question;
 
 public class HBoxExamplePage {
 
     public static void showHBoxExample(Stage stage) {
         HBox pane = new HBox();
 
-        Label explanation = new Label("Question: " + "How do you say <<cat>> in Russian?");
+        ArrayList<Question> questions = DB.loadQuestions();
+        Question q1 = questions.get(0);
+
+        Label explanation = new Label("Question " + q1.getQuestion_id() + ": " + q1.getText());
         //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
-        answersComboBox.getItems().addAll("да", "нет", "может быть");
+        answersComboBox.getItems().addAll(q1.getCorrect_answer(), q1.getIncorrect1(), q1.getIncorrect2(), q1.getIncorrect3());
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit answer");
         
