@@ -21,7 +21,7 @@ public class VBoxExamplePage {
         ArrayList<Question> questions = DB.loadQuestions();
         Question q2 = questions.get(1);
 
-        Label explanation = new Label("Question " + q2.getQuestion_id() + ": " + q2.getText());
+        Label explanation = new Label("Unscored Question: " + q2.getText());
         //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();

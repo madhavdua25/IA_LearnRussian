@@ -24,7 +24,6 @@ public class HBoxExamplePage {
         Question q1 = questions.get(0);
 
         Label explanation = new Label("Question " + q1.getQuestion_id() + ": " + q1.getText());
-        //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
         answersComboBox.getItems().addAll(q1.getCorrect_answer(), q1.getIncorrect1(), q1.getIncorrect2(), q1.getIncorrect3());

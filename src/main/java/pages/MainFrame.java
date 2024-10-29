@@ -18,11 +18,6 @@ import javafx.stage.Stage;
 import model.DB;
 import model.Student;
 
-// import javafx.beans.value.ChangeListener;
-// import javafx.beans.value.ObservableValue;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
-
 public class MainFrame extends Application {
     public static final Font PAGE_HEADING_FONT = new Font("Arial Bold", 28);
     public static final Font TABLE_HEADING_FONT = new Font("Arial Bold", 24);
