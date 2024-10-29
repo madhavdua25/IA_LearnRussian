@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,12 +18,14 @@ public class VBoxExamplePage {
     public static void showVBoxExample(Stage stage) {
 
         VBox pane = new VBox();
+        ArrayList<Question> questions = DB.loadQuestions();
+        Question q2 = questions.get(1);
 
-        Label explanation = new Label("Unscored question: How do you say <<apple>> in Russian?");
+        Label explanation = new Label("Question " + q2.getQuestion_id() + ": " + q2.getText());
         //ImageView cardImage = new ImageView("file:image/1.png");
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
-        answersComboBox.getItems().addAll("Da", "Nyet", "Mojet Beet");
+        answersComboBox.getItems().addAll(q2.getCorrect_answer(), q2.getIncorrect1(), q2.getIncorrect2(), q2.getIncorrect3());
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit answer");
 
