@@ -97,30 +97,59 @@ public class DB {
 	}
 
 	/** Loads a single league given an id. */
-	// public static League loadLeague(int leagueId) {
-	// 	String queryString = " select league.league_id, league_name " +
-	// 			" from league  " +
-	// 			" where league_id = ? ";
+	public static Student loadStudent(int student_id) {
+		String queryString = " select student.student_id, name " +
+				" from student  " +
+				" where student_id = ? ";
 
-	// 	try (
-	// 			PreparedStatement queryStmt = db.conn.prepareStatement(queryString)) {
-	// 		queryStmt.setInt(1, leagueId);
+		try (
+				PreparedStatement queryStmt = db.conn.prepareStatement(queryString)) {
+			queryStmt.setInt(1, student_id);
 
-	// 		try (ResultSet rs = queryStmt.executeQuery()) {
+			try (ResultSet rs = queryStmt.executeQuery()) {
 
-	// 			if (rs.next()) {
-	// 				String leagueName = rs.getString("league_name");
+				if (rs.next()) {
+					String name = rs.getString("name");
 
-	// 				return new League(leagueId, leagueName, false);
-	// 			}
-	// 		}
-	// 	} catch (Exception ex) {
-	// 		System.err.println(ex);
-	// 		ex.printStackTrace(System.err);
-	// 	}
+					return new Student(student_id, name);
+				}
+			}
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
 
-	// 	return null;
-	// }
+		return null;
+	}
+
+	public static Question loadQuestion(int question_id) {
+		String queryString = " select question.question_id, text, correct_answer, incorrect1, incorrect2, incorrect3 " +
+				" from question  " +
+				" where question_id = ? ";
+
+				try (
+					PreparedStatement queryStmt = db.conn.prepareStatement(queryString);
+					ResultSet rs = queryStmt.executeQuery();) {
+	
+				while (rs.next()) {
+					String text = rs.getString("text");
+					String correct_answer = rs.getString("correct_answer");
+					String incorrect1 = rs.getString("incorrect1");
+					String incorrect2 = rs.getString("incorrect2");
+					String incorrect3 = rs.getString("incorrect3");
+
+					Question question = new Question(question_id, text, correct_answer, incorrect1, incorrect2, incorrect3);
+
+					return question;
+				}
+	
+			} catch (Exception ex) {
+				System.err.println(ex);
+				ex.printStackTrace(System.err);
+			}
+
+		return null;
+	}
 
 	/** Adds a new league to the database. */
 	public static void insertStudent(String name, int val) {

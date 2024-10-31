@@ -38,6 +38,6 @@ public class ProgressReportPage {
 
         // display the scene on the screen
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
 }
