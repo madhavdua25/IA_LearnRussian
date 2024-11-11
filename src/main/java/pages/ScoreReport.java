@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class GridExamplePage {
+public class ScoreReport {
 
     public static void showGridExample(Stage stage) {
 

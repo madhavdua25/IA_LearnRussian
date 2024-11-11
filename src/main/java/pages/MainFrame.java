@@ -48,9 +48,9 @@ public class MainFrame extends Application {
        //Button btBorderPane = new Button("BorderPane Example");
        //Button btMixAndMatch = new Button("Mix and Match Demo");
 
-        btHBox.setOnAction(e-> HBoxExamplePage.showHBoxExample(stage));
-        btVBox.setOnAction(e-> VBoxExamplePage.showVBoxExample(stage));
-        btGrid.setOnAction(e-> GridExamplePage.showGridExample(stage));
+        btHBox.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
+        btVBox.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
+        btGrid.setOnAction(e-> ScoreReport.showGridExample(stage));
         btUser.setOnAction(e-> DB.insertStudent(newUser.getText(), students.size()+1));
         //btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
         //btBorderPane.setOnAction(e-> BorderPaneExamplePage.showBorderPaneExample(stage));

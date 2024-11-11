@@ -24,7 +24,7 @@ public class ProgressReportPage {
         //pane.getChildren().addAll(explanation, cardImage, txtField);
         pane.getChildren().addAll(explanation, btBack, graph);
 
-        btBack.setOnAction(e -> GridExamplePage.showGridExample(stage));
+        btBack.setOnAction(e -> ScoreReport.showGridExample(stage));
         // Or just add a single widget to the hbox
         //pane.getChildren().addAll(btUserA, btUserB, btUserC);
 

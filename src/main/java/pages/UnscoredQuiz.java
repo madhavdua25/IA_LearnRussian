@@ -8,16 +8,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.DB;
 import model.Question;
 
-public class VBoxExamplePage {
+public class UnscoredQuiz {
 
     public static void showVBoxExample(Stage stage) {
 
-        VBox pane = new VBox();
+        HBox pane = new HBox();
         ArrayList<Question> questions = DB.loadQuestions();
         Question q2 = questions.get(1);
 
@@ -29,7 +30,7 @@ public class VBoxExamplePage {
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit answer");
 
-        txtField.setMaxWidth(200);
+        //txtField.setMaxWidth(200);
 
         // Add multiple widgets at once to the hbox.
         //pane.getChildren().addAll(explanation, cardImage, txtField);
