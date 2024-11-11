@@ -23,6 +23,10 @@ public class HBoxExamplePage {
         ArrayList<Question> questions = DB.loadQuestions();
         Question q1 = questions.get(0);
 
+        // int i = (int) ((Math.random()*4)+1);
+        // Question q1 = DB.loadQuestion(i);
+
+
         Label explanation = new Label("Question " + q1.getQuestion_id() + ": " + q1.getText());
         TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
