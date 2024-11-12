@@ -35,7 +35,7 @@ public class MainFrame extends Application {
         Button btVBox = new Button("Unscored Practice");
         Button btGrid = new Button("Score Report");
         ImageView russiaFlag = new ImageView("file:image/russiaflag.png");
-        //Button btUser = new Button("Sign in to track progress!");
+        
         
         ArrayList<Student> students = DB.loadStudents();
         ComboBox<Student> namesComboBox = new ComboBox<>();
@@ -45,16 +45,13 @@ public class MainFrame extends Application {
         Button btUser = new Button("Submit");
 
 
-       //Button btBorderPane = new Button("BorderPane Example");
-       //Button btMixAndMatch = new Button("Mix and Match Demo");
+       
 
         btHBox.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
         btVBox.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
         btGrid.setOnAction(e-> ScoreReport.showGridExample(stage));
         btUser.setOnAction(e-> DB.insertStudent(newUser.getText(), students.size()+1));
-        //btUser.setOnAction(e-> UserSignIn.showUserSignIn(stage));
-        //btBorderPane.setOnAction(e-> BorderPaneExamplePage.showBorderPaneExample(stage));
-        //btMixAndMatch.setOnAction(e-> MixMatchDemo.showMixMatchDemo(stage));
+        
 
         GridPane gp = new GridPane();
         gp.setAlignment(Pos.TOP_CENTER);
@@ -65,9 +62,7 @@ public class MainFrame extends Application {
         gp.add(btUser, 2, 2);
         gp.add(newUser, 1, 2);
         gp.add(russiaFlag, 1, 3);
-        //gp.add(btUser, 1, 2);
-        //gp.add(btBorderPane, 3, 1);
-        //gp.add(btMixAndMatch, 4, 1);
+
         gp.setHgap(10);
         gp.setVgap(10);
 
