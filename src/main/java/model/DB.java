@@ -6,8 +6,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.text.SimpleDateFormat; 
+import java.util.Date;
 
 public class DB {
 	private Connection conn = null;
@@ -96,6 +100,37 @@ public class DB {
 		return list;
 	}
 
+	public static ArrayList<Quiz> loadQuizzes(int student_id) {
+		ArrayList<Quiz> list = new ArrayList<>();
+		String queryString = " select quiz.quiz_id, quiz.score, quiz.date_taken " +
+				" from quiz  " +
+				" where quiz.student_id = " + student_id;
+
+		try (
+				PreparedStatement queryStmt = db.conn.prepareStatement(queryString);
+				ResultSet rs = queryStmt.executeQuery();) {
+
+			while (rs.next()) {
+				int quiz_id = rs.getInt("quiz_id");
+				int score = rs.getInt("score");
+				Date date_taken = rs.getDate("date_taken");
+
+				Quiz quiz = new Quiz(quiz_id, score, date_taken, student_id);
+
+				list.add(quiz);
+			}
+
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+
+		return list;
+	}
+
+	
+
+
 	/** Loads a single league given an id. */
 	public static Student loadStudent(int student_id) {
 		String queryString = " select student.student_id, name " +
@@ -152,13 +187,32 @@ public class DB {
 	}
 
 	/** Adds a new league to the database. */
-	public static void insertStudent(String name, int val) {
-		String query = "insert into student(student_id, name ) values (?,?)";
+	public static void insertStudent(String name) {
+		String query = "insert into student(name ) values (?)";
 
 		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 
-			insertStmt.setInt(1, val);
-			insertStmt.setString(2, name);
+			insertStmt.setString(1, name);
+			
+			insertStmt.executeUpdate();
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+	}
+
+	public static void insertQuiz(int score, int student_id, List<Question> list) {
+		String query = "insert into quiz(score, date_taken, student_id) values (?,?,?)";
+
+		long millis = System.currentTimeMillis(); 
+        java.sql.Date date = new java.sql.Date(millis);
+
+		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
+
+			
+			insertStmt.setInt(1, score);
+			insertStmt.setDate(2, date);
+			insertStmt.setInt(3, 1);
 			
 			insertStmt.executeUpdate();
 		} catch (Exception ex) {

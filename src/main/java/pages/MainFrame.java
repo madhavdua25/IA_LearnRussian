@@ -42,7 +42,7 @@ public class MainFrame extends Application {
         namesComboBox.getItems().addAll(students);
 
         TextField newUser = new TextField ();
-        Button btUser = new Button("Submit");
+        Button btUser = new Button("That's me!");
 
 
        
@@ -50,7 +50,10 @@ public class MainFrame extends Application {
         btHBox.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
         btVBox.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
         btGrid.setOnAction(e-> ScoreReport.showGridExample(stage));
-        btUser.setOnAction(e-> DB.insertStudent(newUser.getText(), students.size()+1));
+        //update btUser - if text field has text, insert student - if text field empty, take value from drop down
+        //then - make an int currentUser equal to the student_id of that user
+        //use that int when calling any DB function related to quiz
+        btUser.setOnAction(e-> DB.insertStudent(newUser.getText()));
         
 
         GridPane gp = new GridPane();

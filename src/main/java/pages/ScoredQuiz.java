@@ -42,7 +42,6 @@ public class ScoredQuiz {
         //buttons
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit quiz");
-        Button btSaveScore = new Button("Save this score");
         bigpane.getChildren().addAll(btSubmit, btMainMenu);
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
         btSubmit.setOnAction(e -> {
@@ -54,14 +53,13 @@ public class ScoredQuiz {
                     score++;
                 }
             }
+            DB.insertQuiz(score, 1, quizQuestions);
             Label quizResult = new Label("Score: " + score + "/10");
-            HBox spane = new HBox();
-            spane.getChildren().addAll(quizResult, btSaveScore);
-            bigpane.getChildren().addAll(spane);
+            HBox s_pane = new HBox();
+            s_pane.getChildren().addAll(quizResult);
+            bigpane.getChildren().addAll(s_pane);
         });
-        btSaveScore.setOnAction(e -> {
-            
-        });
+        
 
 
         //set "bigpane" as the root
