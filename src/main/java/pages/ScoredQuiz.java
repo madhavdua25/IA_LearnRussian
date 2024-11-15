@@ -25,17 +25,16 @@ public class ScoredQuiz {
         ArrayList<Question> questions = DB.loadQuestions();
         Collections.shuffle(questions);
         List<Question> quizQuestions = questions.subList(0, Math.min(10, questions.size()));
-        TextField[] fields = new TextField[quizQuestions.size()];
+        ComboBox[] combos = new ComboBox[quizQuestions.size()];
         //create a "smallpane" for each question and add to the "bigpane"
         for(int i = 0; i < quizQuestions.size(); i++){
             HBox smallpane = new HBox();
             Question q = quizQuestions.get(i);
             Label text = new Label("Question " + i + ": " + q.getText());
-            ComboBox answersComboBox = new ComboBox();
-            answersComboBox.getItems().addAll(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
-            fields[i] = new TextField ();
-            fields[i].setPromptText("Type answer exactly");
-            smallpane.getChildren().addAll(text, answersComboBox, fields[i]);
+            combos[i] = new ComboBox();
+            combos[i].getItems().addAll(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
+
+            smallpane.getChildren().addAll(text, combos[i]);
             bigpane.getChildren().addAll(smallpane);
         }
         
@@ -48,12 +47,14 @@ public class ScoredQuiz {
             int score = 0;
             for(int i = 0; i < quizQuestions.size(); i++){
                 Question q = quizQuestions.get(i);
-                String answer = fields[i].getText();
+                String answer = (String) combos[i].getValue();
+
                 if(answer.equals(q.getCorrect_answer())){
                     score++;
                 }
+                combos[i].setDisable(true);
             }
-            DB.insertQuiz(score, 1, quizQuestions);
+            DB.insertQuiz(score, MainFrame.currentUser, quizQuestions);
             Label quizResult = new Label("Score: " + score + "/10");
             HBox s_pane = new HBox();
             s_pane.getChildren().addAll(quizResult);

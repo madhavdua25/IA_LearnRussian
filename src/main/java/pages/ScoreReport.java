@@ -14,7 +14,7 @@ public class ScoreReport {
 
     public static void showGridExample(Stage stage) {
 
-        ArrayList<Quiz> list = DB.loadQuizzes(1);
+        ArrayList<Quiz> list = DB.loadQuizzes(MainFrame.currentUser);
         Quiz q = list.get(list.size()-1);
 
         GridPane pane = new GridPane();

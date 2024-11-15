@@ -187,13 +187,14 @@ public class DB {
 	}
 
 	/** Adds a new league to the database. */
-	public static void insertStudent(String name) {
-		String query = "insert into student(name ) values (?)";
+	public static void insertStudent(int student_id, String name) {
+		String query = "insert into student(student_id, name) values (?, ?)";
 
 		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 
-			insertStmt.setString(1, name);
-			
+			insertStmt.setInt(1, student_id);
+			insertStmt.setString(2, name);
+
 			insertStmt.executeUpdate();
 		} catch (Exception ex) {
 			System.err.println(ex);
@@ -212,7 +213,7 @@ public class DB {
 			
 			insertStmt.setInt(1, score);
 			insertStmt.setDate(2, date);
-			insertStmt.setInt(3, 1);
+			insertStmt.setInt(3, pages.MainFrame.currentUser);
 			
 			insertStmt.executeUpdate();
 		} catch (Exception ex) {

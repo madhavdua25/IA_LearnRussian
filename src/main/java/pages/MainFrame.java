@@ -23,6 +23,8 @@ public class MainFrame extends Application {
     public static final Font TABLE_HEADING_FONT = new Font("Arial Bold", 24);
     public static final Font TABLE_BODY_FONT = new Font("Arial", 22);
 
+    public static int currentUser;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -30,10 +32,11 @@ public class MainFrame extends Application {
     public void start(Stage primaryStage)  {
         loadMenu(primaryStage);
 }
-    public static void loadMenu (Stage stage) {        
-        Button btHBox = new Button("Scored Quiz");
-        Button btVBox = new Button("Unscored Practice");
-        Button btGrid = new Button("Score Report");
+    public static void loadMenu (Stage stage) {     
+        
+        Button btSQ = new Button("Scored Quiz");
+        Button btUQ = new Button("Unscored Practice");
+        Button btSR = new Button("Score Report");
         ImageView russiaFlag = new ImageView("file:image/russiaflag.png");
         
         
@@ -44,27 +47,41 @@ public class MainFrame extends Application {
         TextField newUser = new TextField ();
         Button btUser = new Button("That's me!");
 
+        if(currentUser > 0){
+            namesComboBox.setDisable(true);
+            newUser.setEditable(false);
+        }
+
 
        
 
-        btHBox.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
-        btVBox.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
-        btGrid.setOnAction(e-> ScoreReport.showGridExample(stage));
-        //update btUser - if text field has text, insert student - if text field empty, take value from drop down
-        //then - make an int currentUser equal to the student_id of that user
-        //use that int when calling any DB function related to quiz
-        btUser.setOnAction(e-> DB.insertStudent(newUser.getText()));
+        btSQ.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
+        btUQ.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
+        btSR.setOnAction(e-> ScoreReport.showGridExample(stage));
+        
+        btUser.setOnAction(e-> {
+            if(newUser.getText().length() > 0){
+                DB.insertStudent(students.size()+1, newUser.getText());
+                currentUser = students.size()+1;
+                loadMenu(stage);
+            } else {
+                Student s = namesComboBox.getValue();
+                currentUser = s.getStudent_id();
+                loadMenu(stage);
+            }
+        });
         
 
         GridPane gp = new GridPane();
         gp.setAlignment(Pos.TOP_CENTER);
-        gp.add(btHBox, 0, 1);
-        gp.add(btVBox, 1, 1);
-        gp.add(btGrid, 2, 1);
+        gp.add(btSQ, 0, 1);
+        gp.add(btUQ, 1, 1);
+        gp.add(btSR, 2, 1);
         gp.add(namesComboBox, 0, 2);
         gp.add(btUser, 2, 2);
         gp.add(newUser, 1, 2);
         gp.add(russiaFlag, 1, 3);
+        gp.add(new Label("Current user: " + currentUser), 1, 4);
 
         gp.setHgap(10);
         gp.setVgap(10);
@@ -80,7 +97,6 @@ public class MainFrame extends Application {
         Scene scene = new Scene(vb);
 
         stage.setScene(scene);
-        //stage.setTitle("JavaFX Examples");
         stage.setWidth(1100);
         stage.setHeight(600);
         stage.show();
