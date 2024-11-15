@@ -39,6 +39,8 @@ public class ScoredQuiz {
         }
         
         //buttons
+        Button newQuiz = new Button("Do another quiz");
+            newQuiz.setOnAction(e-> showHBoxExample(stage));
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit quiz");
         bigpane.getChildren().addAll(btSubmit, btMainMenu);
@@ -57,7 +59,7 @@ public class ScoredQuiz {
             DB.insertQuiz(score, MainFrame.currentUser, quizQuestions);
             Label quizResult = new Label("Score: " + score + "/10");
             HBox s_pane = new HBox();
-            s_pane.getChildren().addAll(quizResult);
+            s_pane.getChildren().addAll(quizResult, newQuiz);
             bigpane.getChildren().addAll(s_pane);
         });
         
