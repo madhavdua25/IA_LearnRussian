@@ -1,11 +1,16 @@
 package pages;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.scene.chart.*;
+import model.*;
+import java.time.format.DateTimeFormatter;
 
 public class ProgressReportPage {
     public static void showProgressReport(Stage stage) {
@@ -13,25 +18,36 @@ public class ProgressReportPage {
 
         Label explanation = new Label("Below is a graph of your scores");
         Button btBack = new Button("Back to scores");
-        ImageView graph = new ImageView("file:image/graph.jpeg");
-        //ImageView cardImage = new ImageView("file:image/1.png");
-        //TextField txtField = new TextField("Input username:");
-        // Button btUserA = new Button("User A");
-        // Button btUserB = new Button("User B");
-        // Button btUserC = new Button("User C");
 
-        // Add multiple widgets at once to the hbox.
-        //pane.getChildren().addAll(explanation, cardImage, txtField);
-        pane.getChildren().addAll(explanation, btBack, graph);
+        ArrayList<Quiz> quizzes = DB.loadQuizzes(MainFrame.currentUser);
+        
+        CategoryAxis x = new CategoryAxis();
+        x.setLabel("Date");
+
+        NumberAxis y = new NumberAxis();
+        y.setLabel("Score");
+
+        BarChart<String, Number> barChart = new BarChart<>(x, y);
+        barChart.setTitle("Recent Performance");
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Scores");
+
+        for(Quiz q : quizzes){
+            String formattedDate = q.getDateString();
+            series.getData().add(new XYChart.Data<>(formattedDate, q.getScore()));
+        }
+
+        barChart.getData().add(series);
+
+
+        
+
+        pane.getChildren().addAll(explanation, btBack, barChart);
 
         btBack.setOnAction(e -> ScoreReport.showGridExample(stage));
-        // Or just add a single widget to the hbox
-        //pane.getChildren().addAll(btUserA, btUserB, btUserC);
-
-        // Set what happens when the button is pressed.
-        //btUserA.setOnAction(e -> MainFrame.loadMenu(stage));
-        //btUserB.setOnAction(e -> MainFrame.loadMenu(stage));
-        //btUserC.setOnAction(e -> MainFrame.loadMenu(stage));
 
         // Add the hb as the root of the scene
         Scene scene = new Scene(pane);

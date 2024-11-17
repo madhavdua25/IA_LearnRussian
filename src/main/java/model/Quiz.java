@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Quiz {
     private int quiz_id;
@@ -41,6 +42,13 @@ public class Quiz {
 
     public Date getDate_taken() {
         return date_taken;
+    }
+
+    public String getDateString(){
+        Date d = date_taken;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = formatter.format(d);
+        return formattedDate;
     }
 
     public void setDate_taken(Date date_taken) {
