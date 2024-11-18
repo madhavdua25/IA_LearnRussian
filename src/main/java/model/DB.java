@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.text.SimpleDateFormat; 
-import java.util.Date;
+import java.sql.Date;
 
 public class DB {
 	private Connection conn = null;
@@ -205,8 +205,8 @@ public class DB {
 	public static void insertQuiz(int score, int student_id, List<Question> list) {
 		String query = "insert into quiz(score, date_taken, student_id) values (?,?,?)";
 
-		long millis = System.currentTimeMillis(); 
-        java.sql.Date date = new java.sql.Date(millis);
+		LocalDate currentDate = LocalDate.now();
+		java.sql.Date date = Date.valueOf(currentDate);
 
 		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 

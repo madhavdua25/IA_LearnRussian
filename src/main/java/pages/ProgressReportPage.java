@@ -30,8 +30,6 @@ public class ProgressReportPage {
         BarChart<String, Number> barChart = new BarChart<>(x, y);
         barChart.setTitle("Recent Performance");
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Scores");
 
@@ -41,9 +39,6 @@ public class ProgressReportPage {
         }
 
         barChart.getData().add(series);
-
-
-        
 
         pane.getChildren().addAll(explanation, btBack, barChart);
 
