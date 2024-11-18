@@ -1,6 +1,7 @@
 package pages;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,16 +27,19 @@ public class ScoredQuiz {
         Collections.shuffle(questions);
         List<Question> quizQuestions = questions.subList(0, Math.min(10, questions.size()));
         ComboBox[] combos = new ComboBox[quizQuestions.size()];
+        HBox[] smallpanes = new HBox[quizQuestions.size()];
         //create a "smallpane" for each question and add to the "bigpane"
         for(int i = 0; i < quizQuestions.size(); i++){
-            HBox smallpane = new HBox();
+            smallpanes[i] = new HBox();
             Question q = quizQuestions.get(i);
             Label text = new Label("Question " + i + ": " + q.getText());
             combos[i] = new ComboBox();
-            combos[i].getItems().addAll(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
+            List<String> a = Arrays.asList(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
+            Collections.shuffle(a);
+            combos[i].getItems().addAll(a);
 
-            smallpane.getChildren().addAll(text, combos[i]);
-            bigpane.getChildren().addAll(smallpane);
+            smallpanes[i].getChildren().addAll(text, combos[i]);
+            bigpane.getChildren().addAll(smallpanes[i]);
         }
         
         //buttons
@@ -53,6 +57,8 @@ public class ScoredQuiz {
 
                 if(answer.equals(q.getCorrect_answer())){
                     score++;
+                } else {
+                    smallpanes[i].getChildren().addAll(new Label("Wrong"));
                 }
                 combos[i].setDisable(true);
             }

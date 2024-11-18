@@ -1,7 +1,9 @@
 package pages;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,28 +26,31 @@ public class UnscoredQuiz {
 
         Label explanation = new Label("Unscored Question: " + q.getText());
         
-        TextField txtField = new TextField("Input answer");
         ComboBox answersComboBox = new ComboBox();
-        answersComboBox.getItems().addAll(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
-        TextField inputAnswer = new TextField();
-        inputAnswer.setPromptText("Type answer exactly");
+        List<String> a = Arrays.asList(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
+        Collections.shuffle(a);
+        answersComboBox.getItems().addAll(a);
+        //TextField inputAnswer = new TextField();
+        //inputAnswer.setPromptText("Type answer exactly");
         Button btMainMenu = new Button("Main Menu");
         Button btSubmit = new Button("Submit answer");
         Button btCorrect = new Button("Correct-new question?");
+        Label incorrect = new Label("Incorrect-try again");
 
         
-        pane.getChildren().addAll(explanation, answersComboBox, inputAnswer, btSubmit, btMainMenu);
+        pane.getChildren().addAll(explanation, answersComboBox, btSubmit, btMainMenu);
 
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
         btSubmit.setOnAction(e -> {
-            String answer = inputAnswer.getText();
+            String answer = (String) answersComboBox.getValue();
             if(answer.equals(q.getCorrect_answer())){
+                answersComboBox.setEditable(false);
                 pane.getChildren().addAll(btCorrect);
             } else {
-                inputAnswer.clear();
-                inputAnswer.setPromptText("Incorrect-try again");
+                pane.getChildren().addAll(incorrect);
             }
         });
+
         btCorrect.setOnAction(e -> showVBoxExample(stage));
 
         Scene scene = new Scene(pane);

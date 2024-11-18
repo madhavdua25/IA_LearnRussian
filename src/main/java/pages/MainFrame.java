@@ -53,11 +53,19 @@ public class MainFrame extends Application {
         }
 
 
-       
-
-        btSQ.setOnAction(e-> ScoredQuiz.showHBoxExample(stage));
+    
+        btSQ.setOnAction(e-> {
+            if(currentUser > 0){
+                ScoredQuiz.showHBoxExample(stage);
+            }
+        });
         btUQ.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
-        btSR.setOnAction(e-> ScoreReport.showGridExample(stage));
+        btSR.setOnAction(e-> {
+            if(currentUser > 0){
+                ScoreReport.showGridExample(stage);
+            }
+        });
+        
         
         btUser.setOnAction(e-> {
             if(newUser.getText().length() > 0){
