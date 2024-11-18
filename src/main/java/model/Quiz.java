@@ -1,15 +1,16 @@
 package model;
 
 import java.util.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class Quiz {
     private int quiz_id;
     private int score;
-    private Date date_taken;
+    private Timestamp date_taken;
     private int student_id;
 
-    public Quiz(int quiz_id, int score, Date date_taken, int student_id) {
+    public Quiz(int quiz_id, int score, Timestamp date_taken, int student_id) {
         this.quiz_id = quiz_id;
         this.score = score;
         this.date_taken = date_taken;
@@ -40,18 +41,18 @@ public class Quiz {
         this.score = score;
     }
 
-    public Date getDate_taken() {
+    public Timestamp getDate_taken() {
         return date_taken;
     }
 
     public String getDateString(){
-        Date d = date_taken;
+        Timestamp d = date_taken;
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String formattedDate = formatter.format(d);
         return formattedDate;
     }
 
-    public void setDate_taken(Date date_taken) {
+    public void setDate_taken(Timestamp date_taken) {
         this.date_taken = date_taken;
     }
 

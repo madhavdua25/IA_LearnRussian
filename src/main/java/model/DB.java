@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +114,7 @@ public class DB {
 			while (rs.next()) {
 				int quiz_id = rs.getInt("quiz_id");
 				int score = rs.getInt("score");
-				Date date_taken = rs.getDate("date_taken");
+				Timestamp date_taken = rs.getTimestamp("date_taken");
 
 				Quiz quiz = new Quiz(quiz_id, score, date_taken, student_id);
 
@@ -203,17 +204,17 @@ public class DB {
 	}
 
 	public static void insertQuiz(int score, int student_id, List<Question> list) {
-		String query = "insert into quiz(score, date_taken, student_id) values (?,?,?)";
+		String query = "insert into quiz(score, date_taken, student_id) values (?,NOW(),?)";
 
-		LocalDate currentDate = LocalDate.now();
-		java.sql.Date date = Date.valueOf(currentDate);
+		//LocalDate currentDate = LocalDate.now();
+		//java.sql.Date date = Date.valueOf(currentDate);
 
 		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
 
 			
 			insertStmt.setInt(1, score);
-			insertStmt.setDate(2, date);
-			insertStmt.setInt(3, pages.MainFrame.currentUser);
+			
+			insertStmt.setInt(2, pages.MainFrame.currentUser);
 			
 			insertStmt.executeUpdate();
 		} catch (Exception ex) {

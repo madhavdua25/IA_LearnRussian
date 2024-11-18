@@ -16,7 +16,7 @@ public class ProgressReportPage {
     public static void showProgressReport(Stage stage) {
         HBox pane = new HBox();
 
-        Label explanation = new Label("Below is a graph of your scores");
+        Label explanation = new Label("Right is a graph of your scores");
         Button btBack = new Button("Back to scores");
 
         ArrayList<Quiz> quizzes = DB.loadQuizzes(MainFrame.currentUser);
