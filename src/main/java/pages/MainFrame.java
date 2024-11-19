@@ -6,7 +6,10 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,6 +27,7 @@ public class MainFrame extends Application {
     public static final Font TABLE_BODY_FONT = new Font("Arial", 22);
 
     public static int currentUser;
+    public static String currentUsername;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,6 +42,8 @@ public class MainFrame extends Application {
         Button btUQ = new Button("Unscored Practice");
         Button btSR = new Button("Score Report");
         ImageView russiaFlag = new ImageView("file:image/russiaflag.png");
+        Alert a = new Alert(AlertType.INFORMATION, "Log in first!", ButtonType.CLOSE);
+        
         
         
         ArrayList<Student> students = DB.loadStudents();
@@ -57,12 +63,16 @@ public class MainFrame extends Application {
         btSQ.setOnAction(e-> {
             if(currentUser > 0){
                 ScoredQuiz.showHBoxExample(stage);
+            } else {
+                a.show();
             }
         });
         btUQ.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
         btSR.setOnAction(e-> {
             if(currentUser > 0){
                 ScoreReport.showGridExample(stage);
+            } else {
+                a.show();
             }
         });
         
@@ -71,10 +81,12 @@ public class MainFrame extends Application {
             if(newUser.getText().length() > 0){
                 DB.insertStudent(students.size()+1, newUser.getText());
                 currentUser = students.size()+1;
+                currentUsername = newUser.getText();
                 loadMenu(stage);
             } else {
                 Student s = namesComboBox.getValue();
                 currentUser = s.getStudent_id();
+                currentUsername = s.getName();
                 loadMenu(stage);
             }
         });
@@ -89,7 +101,7 @@ public class MainFrame extends Application {
         gp.add(btUser, 2, 2);
         gp.add(newUser, 1, 2);
         gp.add(russiaFlag, 1, 3);
-        gp.add(new Label("Current user: " + currentUser), 1, 4);
+        gp.add(new Label("Current user: " + currentUsername), 1, 4);
 
         gp.setHgap(10);
         gp.setVgap(10);

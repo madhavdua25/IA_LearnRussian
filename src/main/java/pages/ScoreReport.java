@@ -14,19 +14,23 @@ public class ScoreReport {
 
     public static void showGridExample(Stage stage) {
 
-        ArrayList<Quiz> list = DB.loadQuizzes(MainFrame.currentUser);
-        Quiz q = list.get(list.size()-1);
-
         GridPane pane = new GridPane();
+        ArrayList<Quiz> list = DB.loadQuizzes(MainFrame.currentUser);
 
-        Label recentQuiz = new Label(q.toString());
+        Button btProgressReport = new Button("View Progress Report");
+        
+
+        if(list.size() > 0){
+            Quiz q = list.get(list.size()-1);
+            Label recentQuiz = new Label(q.toString());
+            pane.add(recentQuiz, 0,0);
+            pane.add(btProgressReport, 0, 2);
+        } else {
+            Label noQuiz = new Label("No scores to report yet - Go practice!");
+            pane.add(noQuiz, 0, 0);
+        }
         
         Button btMainMenu = new Button("Main Menu");
-        Button btProgressReport = new Button("View Progress Report");
-
-        
-        pane.add(recentQuiz, 0,0);
-        pane.add(btProgressReport, 0, 2);
         
         pane.add(btMainMenu, 0,3);
 

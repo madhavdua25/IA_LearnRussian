@@ -70,6 +70,7 @@ public class DB {
 		return list;
 	}
 
+
 	public static ArrayList<Question> loadQuestions() {
 		ArrayList<Question> list = new ArrayList<>();
 		String queryString = " select question.question_id, text, correct_answer, incorrect1, incorrect2, incorrect3 " +
