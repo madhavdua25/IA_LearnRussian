@@ -22,6 +22,8 @@ import model.Question;
 
 public class ScoredQuiz {
 
+    public static ArrayList<Integer> questionIDs = new ArrayList<>();
+
     public static void showHBoxExample(Stage stage) {
         VBox bigpane = new VBox();
 
@@ -40,6 +42,7 @@ public class ScoredQuiz {
             List<String> a = Arrays.asList(q.getCorrect_answer(), q.getIncorrect1(), q.getIncorrect2(), q.getIncorrect3());
             Collections.shuffle(a);
             combos[i].getItems().addAll(a);
+            questionIDs.add(q.getQuestion_id());
 
             smallpanes[i].getChildren().addAll(text, combos[i]);
             bigpane.getChildren().addAll(smallpanes[i]);

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -207,10 +208,7 @@ public class DB {
 	public static void insertQuiz(int score, int student_id, List<Question> list) {
 		String query = "insert into quiz(score, date_taken, student_id) values (?,NOW(),?)";
 
-		//LocalDate currentDate = LocalDate.now();
-		//java.sql.Date date = Date.valueOf(currentDate);
-
-		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
+		try (PreparedStatement insertStmt = db.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
 			
 			insertStmt.setInt(1, score);
@@ -218,6 +216,32 @@ public class DB {
 			insertStmt.setInt(2, pages.MainFrame.currentUser);
 			
 			insertStmt.executeUpdate();
+
+			ResultSet generatedKeys = insertStmt.getGeneratedKeys();
+			if (generatedKeys.next()) {
+                int quiz_id = generatedKeys.getInt(1);
+				for(int i : pages.ScoredQuiz.questionIDs){
+					insertQuestionToQuiz(quiz_id, i);
+				}
+            }
+
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+	}
+
+	public static void insertQuestionToQuiz(int quiz_id, int question_id){
+		String query = "insert into quiz_question(quiz_id, question_id) values (?,?)";
+		try (PreparedStatement insertStmt = db.conn.prepareStatement(query)) {
+
+			
+			insertStmt.setInt(1, quiz_id);
+			
+			insertStmt.setInt(2, question_id);
+			
+			insertStmt.executeUpdate();
+
 		} catch (Exception ex) {
 			System.err.println(ex);
 			ex.printStackTrace(System.err);
