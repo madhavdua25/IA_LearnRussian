@@ -105,8 +105,10 @@ public class DB {
 
 	public static ArrayList<Question> loadQuestionsfromQuiz(int quiz_id) {
 		ArrayList<Question> list = new ArrayList<>();
-		String queryString = " select q.question_id, q.text, q.correct_answer, q.incorrect_answer1, q.incorrect_answer2, q.incorrect_answer3  " +
-				" from quiz_question  " +
+		String queryString = " select q.question_id, q.text, q.correct_answer, q.incorrect1, q.incorrect2, q.incorrect3  " +
+				" from quiz_question qq " +
+				" join question q " +
+				" on qq.question_id = q.question_id " +
 				" order by question_id ";
 
 		try (

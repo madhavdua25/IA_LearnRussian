@@ -18,12 +18,14 @@ public class ScoreReport {
         ArrayList<Quiz> list = DB.loadQuizzes(MainFrame.currentUser);
 
         Button btProgressReport = new Button("View Progress Report");
+        Button btPastQuizzes = new Button("View past quizzes");
         
 
         if(list.size() > 0){
             Quiz q = list.get(list.size()-1);
             Label recentQuiz = new Label(q.toString());
             pane.add(recentQuiz, 0,0);
+            pane.add(btPastQuizzes, 0, 1);
             pane.add(btProgressReport, 0, 2);
         } else {
             Label noQuiz = new Label("No scores to report yet - Go practice!");
@@ -37,6 +39,7 @@ public class ScoreReport {
         
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
         btProgressReport.setOnAction(e -> ProgressReportPage.showProgressReport(stage));
+        btPastQuizzes.setOnAction(e -> PastQuizzes.showPastQuizzes(stage));
 
         // Add the hb as the root of the scene
         Scene scene = new Scene(pane);
