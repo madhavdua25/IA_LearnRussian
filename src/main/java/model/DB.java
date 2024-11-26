@@ -103,6 +103,37 @@ public class DB {
 		return list;
 	}
 
+	public static ArrayList<Question> loadQuestionsfromQuiz(int quiz_id) {
+		ArrayList<Question> list = new ArrayList<>();
+		String queryString = " select q.question_id, q.text, q.correct_answer, q.incorrect_answer1, q.incorrect_answer2, q.incorrect_answer3  " +
+				" from quiz_question  " +
+				" order by question_id ";
+
+		try (
+				PreparedStatement queryStmt = db.conn.prepareStatement(queryString);
+				ResultSet rs = queryStmt.executeQuery();) {
+
+			while (rs.next()) {
+				int question_id = rs.getInt("question_id");
+				String text = rs.getString("text");
+				String correct_answer = rs.getString("correct_answer");
+				String incorrect1 = rs.getString("incorrect1");
+				String incorrect2 = rs.getString("incorrect2");
+				String incorrect3 = rs.getString("incorrect3");
+
+				Question question = new Question(question_id, text, correct_answer, incorrect1, incorrect2, incorrect3);
+
+				list.add(question);
+			}
+
+		} catch (Exception ex) {
+			System.err.println(ex);
+			ex.printStackTrace(System.err);
+		}
+
+		return list;
+	}
+
 	public static ArrayList<Quiz> loadQuizzes(int student_id) {
 		ArrayList<Quiz> list = new ArrayList<>();
 		String queryString = " select quiz.quiz_id, quiz.score, quiz.date_taken " +
