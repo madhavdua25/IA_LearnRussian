@@ -67,7 +67,7 @@ public class MainFrame extends Application {
                 a.show();
             }
         });
-        btUQ.setOnAction(e-> UnscoredQuiz.showVBoxExample(stage));
+        btUQ.setOnAction(e-> UnscoredQuiz.showUnscoredQuiz(stage));
         btSR.setOnAction(e-> {
             if(currentUser > 0){
                 ScoreReport.showGridExample(stage);

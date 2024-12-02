@@ -25,7 +25,7 @@ public class ScoreReport {
             Quiz q = list.get(list.size()-1);
             Label recentQuiz = new Label(q.toString());
             pane.add(recentQuiz, 0,0);
-            pane.add(btPastQuizzes, 0, 1);
+            //pane.add(btPastQuizzes, 0, 1);
             pane.add(btProgressReport, 0, 2);
         } else {
             Label noQuiz = new Label("No scores to report yet - Go practice!");
