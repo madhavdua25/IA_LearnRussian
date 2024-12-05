@@ -39,7 +39,7 @@ public class ScoreReport {
         
         btMainMenu.setOnAction(e -> MainFrame.loadMenu(stage));
         btProgressReport.setOnAction(e -> ProgressReportPage.showProgressReport(stage));
-        btPastQuizzes.setOnAction(e -> PastQuizzes.showPastQuizzes(stage));
+        
 
         // Add the hb as the root of the scene
         Scene scene = new Scene(pane);
