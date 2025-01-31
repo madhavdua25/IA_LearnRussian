@@ -132,7 +132,6 @@ public class DB {
 			System.err.println(ex);
 			ex.printStackTrace(System.err);
 		}
-
 		return list;
 	}
 

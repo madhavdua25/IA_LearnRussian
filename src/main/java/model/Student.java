@@ -29,7 +29,4 @@ public class Student {
     public String toString() {
         return name + " (" + student_id + ")";
     }
-
-    
-    
 }
